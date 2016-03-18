@@ -1,0 +1,40 @@
+{
+  "name": "il-i18n",
+  "description": "i18n library wrappers",
+  "version": "0.1.0",
+  "main": [
+    "lib/main/i18n-client/dist/i18n-client-umd.js"
+  ],
+  "authors": [
+    "Dallas Vogels <dvogels@islandlinux.org>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "i18n",
+    "i18next"
+  ],
+  "homepage": "https://github.com/islandlinux/il-i18n",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/islandlinux/il-i18n.git"
+  },
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "i18next": "^2.3.5"
+  },
+  "devDependencies": {
+    "i18next-xhr-backend": "^0.5.3"
+  }
+}

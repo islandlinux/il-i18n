@@ -1,7 +1,8 @@
 <!--
  * Testing
  *
- * @version 0.1.0 #1 Initialize environment
+ * @version x.x.x #2 Create adapter for i18next
+ *          0.1.0 #1 Initialize environment
  *
  * @author Dallas Vogels <dvogels@islandlinux.org>
  *
@@ -11,9 +12,11 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Testing: i18n</title>
+    <title>Testing: il-i18n</title>
 
-    <script src="../../lib/main/il-i18n/dist/il-i18n-umd.js"></script>
+    <script src="../bower_components/i18next/i18next.js"></script>
+    <script src="../bower_components/i18next-xhr-backend/i18nextXHRBackend.js"></script>
+    <script src="../lib/main/i18n-client/dist/i18n-client-umd.js"></script>
 
     <script>
 
@@ -24,16 +27,47 @@
          *
          * @since 0.1.0
          *
-         * @param {String} message
+         * @param {String} label
+         * @param {*} payload
          */
-        function ilConsoleLog(message)
+        function ilConsoleLog(label, payload)
         {
             ilConsoleLogCount++;
 
-            var consoleMessage = ilConsoleLogCount + '. ' + message;
+            var consoleMessage = ilConsoleLogCount + '. ' + label;
             console.log(consoleMessage);
+
+            if (payload) {
+                console.log(payload);
+            }
+
         }
 
+        var namespaces = ['testing'];
+
+        var configuration = {
+            debug: true,
+            lng: 'en',
+            fallbackLng: ['en'],
+            ns: namespaces,
+            defaultNS: namespaces[0],
+
+            // i18next-xhr-backend
+            backend: {
+                loadPath: './locales/{{lng}}/{{ns}}.json',
+                allowMultiLoading: false,
+                crossDomain: false
+            }
+
+        };
+
+        ilConsoleLog('initialize', i18nClient.initialize(configuration));
+
+        ilConsoleLog('getConfiguration', i18nClient.getConfiguration());
+
+        ilConsoleLog('exists', i18nClient.exists('testingKey'));
+
+        ilConsoleLog('translate', i18nClient.translate('testing:testingKey'));
 
     </script>
 
@@ -48,7 +82,30 @@ Inspect and view the console.
 <hr/>
 
 <pre>
-// code goes here
+
+        var namespaces = ['testing'];
+
+        var configuration = {
+            debug: true,
+            lng: 'en',
+            fallbackLng: ['en'],
+            ns: namespaces,
+            defaultNS: namespaces[0],
+
+            // i18next-xhr-backend
+            backend: {
+                loadPath: './locales/{{lng}}/{{ns}}.json',
+                allowMultiLoading: false,
+                crossDomain: false
+            }
+
+        };
+
+        ilConsoleLog('initialize', i18nClient.initialize(configuration));
+
+        ilConsoleLog('getConfiguration', i18nClient.getConfiguration());
+
+        ilConsoleLog('translate', i18nClient.translate('testing:testingKey'));
 </pre>
 
 </body>

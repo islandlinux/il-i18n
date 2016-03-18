@@ -1,5 +1,6 @@
 /**
- * @version 0.1.0 #1 Initialize environment
+ * @version x.x.x #2 Create adapter for i18next
+ *          0.1.0 #1 Initialize environment
  *
  * @author Dallas Vogels <dvogels@islandlinux.org>
  *
@@ -42,7 +43,7 @@ module.exports = function (grunt)
                     tasks: ['wiredep']
                 },
                 js: {
-                    files: ['lib/angularjs/**/*.js', 'lib/main/**/*.js'],
+                    files: ['lib/main/**/*.js'],
                     tasks: ['newer:jshint:all'],
                     options: {
                         livereload: '<%= connect.options.livereload %>'
@@ -65,10 +66,11 @@ module.exports = function (grunt)
                         '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                     ]
                 },
-                il_i18n: {
+                i18n_wrapper: {
                     files: [
-                        'lib/main/il-i18n/src/**/*.js',
-                        'app/index.html'
+                        'lib/main/i18n-client/src/**/*.js',
+                        'app/index.html',
+                        'app/locales/**/*.json'
                     ],
                     tasks: [
                         'transpile'
@@ -129,13 +131,16 @@ module.exports = function (grunt)
             jshint: {
                 options: {
                     jshintrc: '.jshintrc',
-                    reporter: require('jshint-stylish')
+                    reporter: require('jshint-stylish'),
                 },
                 all: {
                     src: [
                         'Gruntfile.js',
                         'lib/main/**/*.js',
                         'app/**/*.js'
+                    ],
+                    exclude: [
+                        'dist/**'
                     ]
                 },
                 test: {
@@ -148,7 +153,7 @@ module.exports = function (grunt)
 
             // Empties folders to start fresh
             clean: {
-                il_i18n: 'lib/main/il-i18n/dist/*',
+                i18n_wrapper: 'lib/main/i18n-client/dist/*',
                 server: '.tmp'
             },
 
@@ -166,16 +171,16 @@ module.exports = function (grunt)
                         format: 'es6'
                     },
                     files: {
-                        'lib/main/il-i18n/dist/il-i18n-es6.js': ['lib/main/il-i18n/src/il-i18n.js']
+                        'lib/main/i18n-client/dist/i18n-client-es6.js': ['lib/main/i18n-client/src/i18n-client.js']
                     }
                 },
                 dist_umd: {
                     options: {
                         format: 'umd',
-                        moduleName: 'il_i18n'
+                        moduleName: 'i18nClient'
                     },
                     files: {
-                        'lib/main/il-i18n/dist/il-i18n-umd.js': ['lib/main/il-i18n/src/il-i18n.js']
+                        'lib/main/i18n-client/dist/i18n-client-umd.js': ['lib/main/i18n-client/src/i18n-client.js']
                     }
                 },
                 dist_cjs: {
@@ -183,7 +188,7 @@ module.exports = function (grunt)
                         format: 'cjs'
                     },
                     files: {
-                        'lib/main/il-i18n/dist/il-i18n-cjs.js': ['lib/main/il-i18n/src/il-i18n.js']
+                        'lib/main/i18n-client/dist/i18n-client-cjs.js': ['lib/main/i18n-client/src/i18n-client.js']
                     }
                 },
                 dist_amd: {
@@ -191,16 +196,16 @@ module.exports = function (grunt)
                         format: 'amd'
                     },
                     files: {
-                        'lib/main/il-i18n/dist/il-i18n-amd.js': ['lib/main/il-i18n/src/il-i18n.js']
+                        'lib/main/i18n-client/dist/i18n-client-amd.js': ['lib/main/i18n-client/src/i18n-client.js']
                     }
                 },
                 dist_iife: {
                     options: {
                         format: 'iife',
-                        moduleName: 'il_i18n'
+                        moduleName: 'i18nClient'
                     },
                     files: {
-                        'lib/main/il-i18n/dist/il-i18n-iife.js': ['lib/main/il-i18n/src/il-i18n.js']
+                        'lib/main/i18n-client/dist/i18n-client-iife.js': ['lib/main/i18n-client/src/i18n-client.js']
                     }
                 }
             }

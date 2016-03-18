@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Testing: il-i18n</title>
+    <title>Testing: i18n-client</title>
 
     <script src="../bower_components/i18next/i18next.js"></script>
     <script src="../bower_components/i18next-xhr-backend/i18nextXHRBackend.js"></script>
@@ -46,7 +46,9 @@
         var namespaces = ['testing'];
 
         var configuration = {
-            debug: true,
+
+            // i18next
+            debug: false,
             lng: 'en',
             fallbackLng: ['en'],
             ns: namespaces,
@@ -82,10 +84,11 @@ Inspect and view the console.
 <hr/>
 
 <pre>
-
         var namespaces = ['testing'];
 
         var configuration = {
+
+            // i18next
             debug: true,
             lng: 'en',
             fallbackLng: ['en'],
@@ -94,7 +97,8 @@ Inspect and view the console.
 
             // i18next-xhr-backend
             backend: {
-                loadPath: './locales/{{lng}}/{{ns}}.json',
+                //loadPath: './locales/{{lng}}/{{ns}}.json',
+        loadPath: './locales/{{lng}}/{{ns}}.json',
                 allowMultiLoading: false,
                 crossDomain: false
             }
@@ -104,6 +108,8 @@ Inspect and view the console.
         ilConsoleLog('initialize', i18nClient.initialize(configuration));
 
         ilConsoleLog('getConfiguration', i18nClient.getConfiguration());
+
+        ilConsoleLog('exists', i18nClient.exists('testingKey'));
 
         ilConsoleLog('translate', i18nClient.translate('testing:testingKey'));
 </pre>

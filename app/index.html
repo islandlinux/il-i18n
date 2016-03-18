@@ -1,0 +1,57 @@
+<!--
+ * Testing
+ *
+ * @version x.x.x #1 Initialize environment
+ *
+ * @author Dallas Vogels <dvogels@islandlinux.org>
+ *
+ * @copyright (c) 2016 Dallas Vogels <dvogels@islandlinux.org>
+-->
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Testing: i18n</title>
+
+    <script src="../../lib/main/il-i18n/dist/il-i18n-umd.js"></script>
+
+    <script>
+
+        var ilConsoleLogCount = 0;
+
+        /**
+         * Add a number to the output for easier viewing of data
+         *
+         * @since 0.1.0
+         *
+         * @param {String} message
+         */
+        function ilConsoleLog(message)
+        {
+            ilConsoleLogCount++;
+
+            var consoleMessage = ilConsoleLogCount + '. ' + message;
+            console.log(consoleMessage);
+        }
+
+
+    </script>
+
+</head>
+
+<body>
+
+Inspect and view the console.
+
+<p>Code being run:</p>
+
+<hr/>
+
+<pre>
+// code goes here
+</pre>
+
+</body>
+</html>
+
+<!-- EOF -->

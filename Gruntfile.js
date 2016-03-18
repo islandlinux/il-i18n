@@ -1,5 +1,5 @@
 /**
- * @version x.x.x #1 Initialize environment
+ * @version 0.1.0 #1 Initialize environment
  *
  * @author Dallas Vogels <dvogels@islandlinux.org>
  *

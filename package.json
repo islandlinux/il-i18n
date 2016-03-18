@@ -1,7 +1,7 @@
 {
   "name": "i18n-client",
   "repository": "git@github.com:islandlinux/i18n-client.git",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "licence": "propriety",
   "private": "true",
   "contributors": [

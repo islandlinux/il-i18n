@@ -1,5 +1,5 @@
 /**
- * @version x.x.x #2 Create adapter for i18next
+ * @version 0.2.0 #2 Create adapter for i18next
  *          0.1.0 #1 Initialize environment
  *
  * @author Dallas Vogels <dvogels@islandlinux.org>

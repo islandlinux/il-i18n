@@ -1,7 +1,7 @@
 {
   "name": "i18n-client",
   "description": "i18n-client",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": [
     "lib/main/i18n-client/dist/i18n-client-umd.js"
   ],

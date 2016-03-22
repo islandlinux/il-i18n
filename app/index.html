@@ -1,7 +1,8 @@
 <!--
  * Testing
  *
- * @version x.x.x #3 Implement promises
+ * @version x.x.x #4 Add values to client
+ *          x.x.x #3 Implement promises
  *          0.2.0 #2 Create adapter for i18next
  *          0.1.0 #1 Initialize environment
  *
@@ -17,6 +18,9 @@
 
     <script src="../bower_components/i18next/i18next.js"></script>
     <script src="../bower_components/i18next-xhr-backend/i18nextXHRBackend.js"></script>
+
+    <script src="../bower_components/sprintf/src/sprintf.js"></script>
+
     <script src="../lib/main/i18n-client/dist/i18n-client-umd.js"></script>
 
     <script>
@@ -71,7 +75,8 @@
                     ilConsoleLog('initialize', message);
                     ilConsoleLog('getConfiguration', i18nClient.getConfiguration());
                     ilConsoleLog('exists', i18nClient.exists('testing:testingKey'));
-                    ilConsoleLog('translate', i18nClient.translate('testing:testingKey'));
+                    ilConsoleLog('translate without sprintf', i18nClient.translate('testing:testingKey'));
+                    ilConsoleLog('translate with sprintf', i18nClient.translate('testing:testingKey', ['repo']));
                 }, function (message)
                 { // error
                     ilConsoleLog('initialize', message);
@@ -112,14 +117,19 @@ Inspect and view the console.
 
         };
 
-        i18nClient.initialize(configuration).then(function(message) {
-            ilConsoleLog('initialize', message);
-            ilConsoleLog('getConfiguration', i18nClient.getConfiguration());
-            ilConsoleLog('exists', i18nClient.exists('testing:testingKey'));
-            ilConsoleLog('translate', i18nClient.translate('testing:testingKey'));
-        }, function(message) { // error
-            ilConsoleLog('initialize', message);
-        });
+        i18nClient.initialize(configuration).then(
+                function (message)
+                {
+                    ilConsoleLog('initialize', message);
+                    ilConsoleLog('getConfiguration', i18nClient.getConfiguration());
+                    ilConsoleLog('exists', i18nClient.exists('testing:testingKey'));
+                    ilConsoleLog('translate without sprintf', i18nClient.translate('testing:testingKey'));
+                    ilConsoleLog('translate with sprintf', i18nClient.translate('testing:testingKey', ['repo']));
+                }, function (message)
+                { // error
+                    ilConsoleLog('initialize', message);
+                }
+        );
 </pre>
 
 </body>

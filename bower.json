@@ -33,6 +33,7 @@
   ],
   "dependencies": {
     "i18next": "^2.3.5",
-    "i18next-xhr-backend": "^0.5.3"
+    "i18next-xhr-backend": "^0.5.3",
+    "sprintf": "^1.0.3"
   }
 }

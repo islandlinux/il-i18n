@@ -1,4 +1,4 @@
 {
   "helloWorld": "Hello World!",
-  "testingKey": "This is the testing text"
+  "testingKey": "This is the testing text with a sprintf variable [%s]"
 }

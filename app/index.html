@@ -1,7 +1,8 @@
 <!--
  * Testing
  *
- * @version 0.2.0 #2 Create adapter for i18next
+ * @version x.x.x #3 Implement promises
+ *          0.2.0 #2 Create adapter for i18next
  *          0.1.0 #1 Initialize environment
  *
  * @author Dallas Vogels <dvogels@islandlinux.org>
@@ -47,29 +48,35 @@
 
         var configuration = {
 
-            // i18next
-            debug: false,
-            lng: 'en',
-            fallbackLng: ['en'],
-            ns: namespaces,
-            defaultNS: namespaces[0],
-
             // i18next-xhr-backend
             backend: {
                 loadPath: './locales/{{lng}}/{{ns}}.json',
+                //loadPath: './locales/en/testing.json',
                 allowMultiLoading: false,
                 crossDomain: false
-            }
+            },
+
+            // i18next
+            debug: true,
+            lng: 'en',
+            fallbackLng: ['en'],
+            ns: namespaces,
+            defaultNS: namespaces[0]
 
         };
 
-        ilConsoleLog('initialize', i18nClient.initialize(configuration));
-
-        ilConsoleLog('getConfiguration', i18nClient.getConfiguration());
-
-        ilConsoleLog('exists', i18nClient.exists('testingKey'));
-
-        ilConsoleLog('translate', i18nClient.translate('testing:testingKey'));
+        i18nClient.initialize(configuration).then(
+                function (message)
+                {
+                    ilConsoleLog('initialize', message);
+                    ilConsoleLog('getConfiguration', i18nClient.getConfiguration());
+                    ilConsoleLog('exists', i18nClient.exists('testing:testingKey'));
+                    ilConsoleLog('translate', i18nClient.translate('testing:testingKey'));
+                }, function (message)
+                { // error
+                    ilConsoleLog('initialize', message);
+                }
+        );
 
     </script>
 
@@ -88,30 +95,31 @@ Inspect and view the console.
 
         var configuration = {
 
+            // i18next-xhr-backend
+            backend: {
+                loadPath: './locales/{{lng}}/{{ns}}.json',
+                //loadPath: './locales/en/testing.json',
+                allowMultiLoading: false,
+                crossDomain: false
+            },
+
             // i18next
             debug: true,
             lng: 'en',
             fallbackLng: ['en'],
             ns: namespaces,
-            defaultNS: namespaces[0],
-
-            // i18next-xhr-backend
-            backend: {
-                //loadPath: './locales/{{lng}}/{{ns}}.json',
-        loadPath: './locales/{{lng}}/{{ns}}.json',
-                allowMultiLoading: false,
-                crossDomain: false
-            }
+            defaultNS: namespaces[0]
 
         };
 
-        ilConsoleLog('initialize', i18nClient.initialize(configuration));
-
-        ilConsoleLog('getConfiguration', i18nClient.getConfiguration());
-
-        ilConsoleLog('exists', i18nClient.exists('testingKey'));
-
-        ilConsoleLog('translate', i18nClient.translate('testing:testingKey'));
+        i18nClient.initialize(configuration).then(function(message) {
+            ilConsoleLog('initialize', message);
+            ilConsoleLog('getConfiguration', i18nClient.getConfiguration());
+            ilConsoleLog('exists', i18nClient.exists('testing:testingKey'));
+            ilConsoleLog('translate', i18nClient.translate('testing:testingKey'));
+        }, function(message) { // error
+            ilConsoleLog('initialize', message);
+        });
 </pre>
 
 </body>

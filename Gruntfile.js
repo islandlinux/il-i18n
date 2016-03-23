@@ -1,5 +1,5 @@
 /**
- * @version x.x.x #5 Add babel support for transpile
+ * @version 0.4.0 #5 Add babel support for transpile
  *          0.2.0 #2 Create adapter for i18next
  *          0.1.0 #1 Initialize environment
  *

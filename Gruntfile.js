@@ -1,5 +1,6 @@
 /**
- * @version 0.2.0 #2 Create adapter for i18next
+ * @version x.x.x #5 Add babel support for transpile
+ *          0.2.0 #2 Create adapter for i18next
  *          0.1.0 #1 Initialize environment
  *
  * @author Dallas Vogels <dvogels@islandlinux.org>
@@ -17,6 +18,8 @@
 
 module.exports = function (grunt)
 {
+    var babel = require('rollup-plugin-babel');
+
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
 
@@ -163,13 +166,16 @@ module.exports = function (grunt)
             },
 
             rollup: {
-                dist_es6: {
-                    options: {
-                        format: 'es6'
-                    },
-                    files: {
-                        'lib/main/i18n-client/dist/i18n-client-es6.js': ['lib/main/i18n-client/src/i18n-client.js']
-                    }
+                options: {
+                    plugins: [
+                        babel(
+                            {
+                                presets: 'es2015-rollup',
+                                exclude: './node_modules/**',
+                                babelrc: false
+                            }
+                        )
+                    ]
                 },
                 dist_umd: {
                     options: {
@@ -178,31 +184,6 @@ module.exports = function (grunt)
                     },
                     files: {
                         'lib/main/i18n-client/dist/i18n-client-umd.js': ['lib/main/i18n-client/src/i18n-client.js']
-                    }
-                },
-                dist_cjs: {
-                    options: {
-                        format: 'cjs'
-                    },
-                    files: {
-                        'lib/main/i18n-client/dist/i18n-client-cjs.js': ['lib/main/i18n-client/src/i18n-client.js']
-                    }
-                },
-                dist_amd: {
-                    options: {
-                        format: 'amd'
-                    },
-                    files: {
-                        'lib/main/i18n-client/dist/i18n-client-amd.js': ['lib/main/i18n-client/src/i18n-client.js']
-                    }
-                },
-                dist_iife: {
-                    options: {
-                        format: 'iife',
-                        moduleName: 'i18nClient'
-                    },
-                    files: {
-                        'lib/main/i18n-client/dist/i18n-client-iife.js': ['lib/main/i18n-client/src/i18n-client.js']
                     }
                 }
             }

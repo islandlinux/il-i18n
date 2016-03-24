@@ -1,5 +1,6 @@
 /**
- * @version 0.4.0 #5 Add babel support for transpile
+ * @version x.x.x #6 Tweaks
+ *          0.4.0 #5 Add babel support for transpile
  *          0.2.0 #2 Create adapter for i18next
  *          0.1.0 #1 Initialize environment
  *
@@ -42,8 +43,7 @@ module.exports = function (grunt)
             // Watches files for changes and runs tasks based on the changed files
             watch: {
                 bower: {
-                    files: ['bower.json'],
-                    tasks: ['wiredep']
+                    files: ['bower.json']
                 },
                 js: {
                     files: ['lib/main/**/*.js'],

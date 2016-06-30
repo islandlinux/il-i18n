@@ -1,15 +1,16 @@
 {
   "name": "i18n-client",
-  "repository": "git@github.com:islandlinux/i18n-client.git",
+  "description": "This package creates an adapter to [i18next](https://github.com/i18next/i18next) providing the ability to use other libraries in the future.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:islandlinux/i18n-client"
+  },
   "version": "0.4.0",
-  "licence": "propriety",
-  "private": "true",
-  "contributors": [
-    {
+  "licence": "MIT",
+  "author": {
       "name": "Dallas Vogels",
       "email": "dvogels@islandlinux.com"
-    }
-  ],
+  },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^0.7.3",

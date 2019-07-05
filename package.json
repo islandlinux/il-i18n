@@ -8,10 +8,11 @@
   "version": "0.4.1",
   "licence": "MIT",
   "author": {
-      "name": "Dallas Vogels",
-      "email": "dvogels@islandlinux.com"
+    "name": "Dallas Vogels",
+    "email": "dvogels@islandlinux.com"
   },
   "devDependencies": {
+    "babel-preset-es2015-rollup": "3.0.0",
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^0.7.3",
     "grunt-concurrent": "^0.5.0",
@@ -24,7 +25,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-karma": "^0.9.0",
     "grunt-newer": "^0.7.0",
-    "grunt-rollup": "^0.6.2",
+    "grunt-rollup": "3.0.0",
     "jshint-stylish": "^0.2.0",
     "karma": "^0.12.24",
     "karma-coverage": "^0.2.7",
@@ -39,5 +40,10 @@
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "dependencies": {
+    "i18next": "17.0.6",
+    "i18next-xhr-backend": "3.0.0",
+    "sprintf-js": "1.1.2"
   }
 }

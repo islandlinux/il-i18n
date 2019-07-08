@@ -29,9 +29,6 @@ module.exports = function (grunt)
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
 
-    // Time how long tasks take. Can help when optimizing build times
-    require('time-grunt')(grunt);
-
     // Configurable paths for the application
     let appConfig = {
         app: 'lib',
@@ -59,7 +56,7 @@ module.exports = function (grunt)
                 },
                 jsTest: {
                     files: ['test/**/*.js'],
-                    tasks: ['newer:jshint:test', 'karma']
+                    tasks: ['newer:jshint:test']
                 },
                 gruntfile: {
                     files: ['Gruntfile.js']
@@ -162,14 +159,6 @@ module.exports = function (grunt)
                 server: '.tmp'
             },
 
-            // Test settings
-            karma: {
-                unit: {
-                    configFile: 'test/karma.conf.js',
-                    singleRun: true
-                }
-            },
-
             rollup: {
                 options: {
                     plugins: [
@@ -183,7 +172,9 @@ module.exports = function (grunt)
                     ],
                     external: Object.keys(dependencies),
                     globals: {
-                        i18next: 'i18next'
+                        i18next: 'i18next',
+                        'i18next-xhr-backend': 'i18nextXHRBackend',
+                        'sprintf-js': 'vsprintf'
                     }
                 },
                 dist_umd: {
@@ -218,14 +209,6 @@ module.exports = function (grunt)
                 ]
             );
         }
-    );
-
-    grunt.registerTask(
-        'test', [
-            'clean:server',
-            'connect:test',
-            'karma'
-        ]
     );
 
     grunt.registerTask(

@@ -1,7 +1,7 @@
 /**
  * @version
  *
- * x.x.x #11 Update packages for npm and bower
+ * 0.5.0 #11 Update packages for npm and bower
  * 0.4.1 #6 Tweaks
  * 0.4.0 #5 Add babel support for transpile
  * 0.2.0 #2 Create adapter for i18next

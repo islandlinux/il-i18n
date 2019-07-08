@@ -70,7 +70,8 @@
                     ilConsoleLog('getConfiguration', i18nClient.getConfiguration());
                     ilConsoleLog('exists', i18nClient.exists('testing:testingKey'));
                     ilConsoleLog('translate without sprintf', i18nClient.translate('testing:testingKey'));
-                    ilConsoleLog('translate with sprintf', i18nClient.translate('testing:testingKey', ['repo']));
+                    ilConsoleLog('translate with sprintf', i18nClient.translate('testing:testingKey', ['key1']));
+                    ilConsoleLog('translate with multiple sprintf', i18nClient.translate('testing:testingKeys', ['key1', ['key2']]));
                 }, function (message)
                 { // error
                     ilConsoleLog('initialize', message);
@@ -119,6 +120,7 @@ Inspect and view the console.
                     ilConsoleLog('exists', i18nClient.exists('testing:testingKey'));
                     ilConsoleLog('translate without sprintf', i18nClient.translate('testing:testingKey'));
                     ilConsoleLog('translate with sprintf', i18nClient.translate('testing:testingKey', ['repo']));
+                    ilConsoleLog('translate with multiple sprintf', i18nClient.translate('testing:testingKeys', ['key1', ['key2']]));
                 }, function (message)
                 { // error
                     ilConsoleLog('initialize', message);

@@ -1,12 +1,15 @@
 /**
- * @version 0.4.1 #6 Tweaks
- *          0.4.0 #5 Add babel support for transpile
- *          0.2.0 #2 Create adapter for i18next
- *          0.1.0 #1 Initialize environment
+ * @version
+ *
+ * x.x.x #11 Update packages for npm and bower
+ * 0.4.1 #6 Tweaks
+ * 0.4.0 #5 Add babel support for transpile
+ * 0.2.0 #2 Create adapter for i18next
+ * 0.1.0 #1 Initialize environment
  *
  * @author Dallas Vogels <dvogels@islandlinux.org>
  *
- * @copyright (c) 2016 Dallas Vogels <dvogels@islandlinux.org>
+ * @copyright (c) 2016-2019 Dallas Vogels <dvogels@islandlinux.org>
  *
  **/
 'use strict';
@@ -19,16 +22,15 @@
 
 module.exports = function (grunt)
 {
-    var babel = require('rollup-plugin-babel');
+    let dependencies = grunt.file.readJSON('./package.json').dependencies;
+
+    let babel = require('rollup-plugin-babel');
 
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
 
-    // Time how long tasks take. Can help when optimizing build times
-    require('time-grunt')(grunt);
-
     // Configurable paths for the application
-    var appConfig = {
+    let appConfig = {
         app: 'lib',
         dist: 'dist'
     };
@@ -54,7 +56,7 @@ module.exports = function (grunt)
                 },
                 jsTest: {
                     files: ['test/**/*.js'],
-                    tasks: ['newer:jshint:test', 'karma']
+                    tasks: ['newer:jshint:test']
                 },
                 gruntfile: {
                     files: ['Gruntfile.js']
@@ -157,14 +159,6 @@ module.exports = function (grunt)
                 server: '.tmp'
             },
 
-            // Test settings
-            karma: {
-                unit: {
-                    configFile: 'test/karma.conf.js',
-                    singleRun: true
-                }
-            },
-
             rollup: {
                 options: {
                     plugins: [
@@ -175,7 +169,13 @@ module.exports = function (grunt)
                                 babelrc: false
                             }
                         )
-                    ]
+                    ],
+                    external: Object.keys(dependencies),
+                    globals: {
+                        i18next: 'i18next',
+                        'i18next-xhr-backend': 'i18nextXHRBackend',
+                        'sprintf-js': 'vsprintf'
+                    }
                 },
                 dist_umd: {
                     options: {
@@ -209,14 +209,6 @@ module.exports = function (grunt)
                 ]
             );
         }
-    );
-
-    grunt.registerTask(
-        'test', [
-            'clean:server',
-            'connect:test',
-            'karma'
-        ]
     );
 
     grunt.registerTask(
